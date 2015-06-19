@@ -19,7 +19,7 @@ class fix_point {
 public:
 
     const int rafa_bits = rafa;
-    const int ela_bits = ela;
+    static const int post_point_bits = ela;
     static const int rafaela_bits = rafa + ela;
 
     using IntType = typename make_type<rafaela_bits>::type;
@@ -35,15 +35,36 @@ public:
     //Konstruktor mit int32
     explicit fix_point(std::int32_t value);
 
-
+    //Klassen-Operatoren
+    //Zuweisungsoperator
+    fix_point& operator = (float value);
 
     //Klassenfrac
     float frac() const;
     //Klassenfloor
     float floor() const;
 
+   //Vergleichsoperatoren
    bool operator == (fix_point rhs) const;
+   bool operator != (fix_point rhs) const;
+   bool operator > (fix_point rhs) const;
+   bool operator >= (fix_point rhs) const;
+   bool operator < (fix_point rhs) const;
+   bool operator <= (fix_point rhs) const;
 
+   //arithmetische Operatoren
+   fix_point operator + (fix_point rhs) const;
+   fix_point operator - (fix_point rhs) const;
+   fix_point operator / (fix_point rhs) const;
+   fix_point operator * (fix_point rhs) const;
+
+   fix_point operator += (fix_point rhs);
+   fix_point operator -= (fix_point rhs);
+   fix_point operator /= (fix_point rhs);
+   fix_point operator *= (fix_point rhs);
+
+
+    //Cast
    float toFloat();
 
    fix_point to_fix_point (float value){
