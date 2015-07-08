@@ -35,10 +35,10 @@ float fix_point::toFloat (){
 
 }
 //Vergleichoperatoren
-bool fix_point::operator == (fix_point rhs) const
-{
-    return (data == rhs.data);
-}
+//bool fix_point::operator == (fix_point rhs) const
+//{
+//    return (data == rhs.data);
+//}
 
 bool fix_point::operator != (fix_point rhs) const
 {

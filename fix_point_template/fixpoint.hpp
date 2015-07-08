@@ -18,7 +18,7 @@ class fix_point {
 
 public:
 
-    const int rafa_bits = rafa;
+    static const int rafa_bits = rafa;
     static const int post_point_bits = ela;
     static const int rafaela_bits = rafa + ela;
 
@@ -45,7 +45,7 @@ public:
     float floor() const;
 
    //Vergleichsoperatoren
-   bool operator == (fix_point rhs) const;
+
    bool operator != (fix_point rhs) const;
    bool operator > (fix_point rhs) const;
    bool operator >= (fix_point rhs) const;
@@ -64,6 +64,27 @@ public:
    fix_point operator *= (fix_point rhs);
 
 
+   fix_point operator++ () { // prefix
+       data += pow(2,   ela);
+       return *this; //'this' is a pointer '*this' is the dereferenced object
+   }
+   fix_point operator-- () { // prefix
+       data -= pow(2,ela);
+       return *this;
+   }
+   fix_point operator++ (int) { // postfix
+       fix_point temp = *this;
+       data += pow(2,ela);
+       return temp;
+   }
+   fix_point operator-- (int) { // postfix
+       fix_point temp = *this;
+       data -= pow(2,ela);
+       return temp;
+   }
+
+
+
     //Cast
    float toFloat();
 
@@ -80,5 +101,10 @@ public:
 float frac (fix_point<16,16> value);
 float floor (fix_point<16,16> value);
 
+template <typename fixpointType> //moved out of class because i had to remove the explicit from the float cast (test does "float == fix_point" which is bad, mkay?)
+bool operator==(fixpointType lhs, fixpointType rhs) {
+
+    return lhs.getData() == rhs.getData();
+}
 
 #endif
