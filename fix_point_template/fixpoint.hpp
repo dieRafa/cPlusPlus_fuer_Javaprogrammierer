@@ -45,7 +45,7 @@ public:
     float floor() const;
 
    //Vergleichsoperatoren
-
+   bool operator == (fix_point rhs) const;
    bool operator != (fix_point rhs) const;
    bool operator > (fix_point rhs) const;
    bool operator >= (fix_point rhs) const;
@@ -106,5 +106,10 @@ bool operator==(fixpointType lhs, fixpointType rhs) {
 
     return lhs.getData() == rhs.getData();
 }
-
+/*
+template <typename fixpointType>
+bool operator!=(fixpointType lhs, fixpointType rhs) {
+    return !(lhs == rhs);
+}
+*/
 #endif
